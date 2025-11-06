@@ -5,11 +5,39 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React</title>
-    <script type="module" crossorigin src="/assets/index-CKwWTH19.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CRBIk3yx.css">
+    <!-- Strong workaround: robustly disable React DevTools on localhost to prevent semver errors from outdated extensions -->
+    <script>
+      (function () {
+        var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.hostname === '::1';
+        if (!isLocal) return;
+        function disableDevToolsHook() {
+          try {
+            var stub = Object.freeze({
+              isDisabled: true,
+              inject: function () {},
+              onCommitFiberRoot: function () {},
+              onCommitFiberUnmount: function () {},
+            });
+            Object.defineProperty(window, '__REACT_DEVTOOLS_GLOBAL_HOOK__', {
+              configurable: true,
+              get: function () { return stub; },
+              set: function () { /* ignore attempts to override */ },
+            });
+          } catch (_) {}
+        }
+        // Run immediately and periodically in case the extension reinjects
+        disableDevToolsHook();
+        var id = setInterval(disableDevToolsHook, 1000);
+        window.addEventListener('beforeunload', function(){ clearInterval(id); });
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-BQxeDqnz.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/three-vendor-CvPr4brT.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-CHOxu-r2.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-vendor-CY2pXhOv.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-DQ23Gu6u.css">
   </head>
   <body>
     <div id="root"></div>
   </body>
-</html> 
-// ddifij
+</html>

@@ -1,48 +1,29 @@
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Suspense, lazy } from "react";
 import HeroText from "../components/HeroText";
 import ParallaxBackground from "../components/ParallaxBackground";
-import { Astronaut } from "../components/Astronaut";
-import { Float } from "@react-three/drei";
-import { useMediaQuery } from "react-responsive";
-import { easing } from "maath";
-import { Suspense } from "react";
-import Loader from "../components/Loader";
+// Note: The Canvas-specific Loader uses @react-three/drei <Html>,
+// which requires a Canvas context. For Suspense outside Canvas,
+// use a simple DOM-based fallback instead.
+
+const Hero3D = lazy(() => import("../components/Hero3D"));
 
 const Hero = () => {
-  const isMobile = useMediaQuery({ maxWidth: 853 });
   return (
     <section id="home" className="flex items-start justify-center min-h-screen overflow-hidden md:items-start md:justify-start c-space">
       <HeroText />
       <ParallaxBackground />
-      <figure
-        className="absolute inset-0"
-        style={{ width: "100vw", height: "100vh" }}
+      <Suspense
+        fallback={
+          <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
+            <div className="h-12 w-12 animate-spin rounded-full border-4 border-neutral-700 border-t-white" />
+            <span className="sr-only">Loading 3D…</span>
+          </div>
+        }
       >
-        <Canvas camera={{ position: [0, 1, 3] }}>
-          <Suspense fallback={<Loader />}>
-            <Float>
-              <Astronaut
-                scale={isMobile && 0.23}
-                position={isMobile && [0, -1.5, 0]}
-              />
-            </Float>
-            <Rig />
-          </Suspense>
-        </Canvas>
-      </figure>
+        <Hero3D />
+      </Suspense>
     </section>
   );
 };
-
-function Rig() {
-  return useFrame((state, delta) => {
-    easing.damp3(
-      state.camera.position,
-      [state.mouse.x / 10, 1 + state.mouse.y / 10, 3],
-      0.5,
-      delta
-    );
-  });
-}
 
 export default Hero;
