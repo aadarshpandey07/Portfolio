@@ -2,7 +2,8 @@ export const myProjects = [
   {
     id: 1,
     title: "Doctors Appointment",
-    description: "A full-featured appointment booking app for clinics and patients.",
+    description:
+      "A full-featured appointment booking app for clinics and patients.",
     subDescription: [
       "Built a collaborative project management tool with Kanban boards, integrating Prisma and NeonDB for efficient data management and Clerk for secure authentication.",
       "Automated sprint report generation by analyzing GitHub commits, reducing reporting time by 25%.",
@@ -21,7 +22,8 @@ export const myProjects = [
   {
     id: 2,
     title: "BizFlow",
-    description: "A KPI-driven platform for service businesses with workflow automation.",
+    description:
+      "A KPI-driven platform for service businesses with workflow automation.",
     subDescription: [
       "Built a full-stack web platform for service-based companies to track KPIs and automate workflows, with role-based dashboards.",
       "Developed a task management system where managers assign targets and employees log completions, auto-updating KPI charts and revenue and handling audits and logs.",
@@ -42,7 +44,8 @@ export const myProjects = [
   {
     id: 3,
     title: "CarMarketPlace",
-    description: "A marketplace for second-hand cars with real-time chat and secure listings.",
+    description:
+      "A marketplace for second-hand cars with real-time chat and secure listings.",
     subDescription: [
       "Users can view, add, and manage second-hand car listings with detailed descriptions and images.",
       "Implemented secure authentication with Clerk, real-time chat using Sendbird, and seamless backend integration with Drizzle ORM and Firebase for real-time features.",
