@@ -1,6 +1,6 @@
 import { Suspense, lazy } from "react";
 import HeroText from "../components/HeroText";
-import ParallaxBackground from "../components/ParallaxBackground";
+import ParallaxBackground from "../components/parallaxBackground";
 // Note: The Canvas-specific Loader uses @react-three/drei <Html>,
 // which requires a Canvas context. For Suspense outside Canvas,
 // use a simple DOM-based fallback instead.
