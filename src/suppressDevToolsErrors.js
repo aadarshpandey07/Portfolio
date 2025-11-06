@@ -8,7 +8,9 @@ if (typeof window !== "undefined") {
     try {
       const msg = typeof args[0] === "string" ? args[0] : "";
       if (msg.includes("Invalid argument not valid semver")) return;
-  } catch { /* ignore parse errors */ }
+    } catch {
+      /* ignore parse errors */
+    }
     return originalError.apply(console, args);
   };
 
@@ -18,8 +20,12 @@ if (typeof window !== "undefined") {
       const message = event?.message || event?.reason?.message || "";
       const filename = event?.filename || "";
       // Match only the specific semver error or files clearly from the DevTools backend bundle.
-      const isSemverError = message.includes("Invalid argument not valid semver");
-      const isDevToolsFile = /react_devtools_backend/i.test(filename) || /backend\.js$/i.test(filename);
+      const isSemverError = message.includes(
+        "Invalid argument not valid semver"
+      );
+      const isDevToolsFile =
+        /react_devtools_backend/i.test(filename) ||
+        /backend\.js$/i.test(filename);
       return isSemverError || isDevToolsFile;
     } catch (_) {
       return false;
