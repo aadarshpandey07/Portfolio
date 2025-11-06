@@ -14,19 +14,5 @@ export default defineConfig({
         drop_debugger: true,
       },
     },
-    rollupOptions: {
-      output: {
-        // Split large vendor bundles (three, react, etc.) into separate chunks
-        manualChunks(id) {
-          if (id.includes("node_modules")) {
-            if (id.includes("three") || id.includes("three-stdlib")) {
-              return "three-vendor";
-            }
-            if (id.includes("react")) return "react-vendor";
-            return "vendor";
-          }
-        },
-      },
-    },
   },
 });
