@@ -52,7 +52,7 @@ const Navbar = () => {
               const el = document.getElementById("home");
               if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
             }}
-            className="text-xl font-bold transition-colors text-neutral-400 hover:text-white"
+            className="text-lg sm:text-xl font-bold transition-colors text-neutral-400 hover:text-white"
           >
             Aadarsh
           </a>
