@@ -11,6 +11,8 @@ if (typeof window !== "undefined") {
     } catch {
       /* ignore parse errors */
     }
+   
+   
     return originalError.apply(console, args);
   };
 
